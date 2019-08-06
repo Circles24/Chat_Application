@@ -1,33 +1,31 @@
 import java.io.DataOutputStream;
 import java.util.Scanner;
+import java.io.DataInputStream;
 
 
-public class ClientWriter extends Thread
+public class ClientWriter implements Runnable
 {
 	private DataOutputStream dout;
-	private Scanner scn;
+	private DataInputStream din;
+	private byte[] buff;
+	private final String name;
 	
-	ClientWriter(DataOutputStream dout){
+	ClientWriter(DataOutputStream dout,String name){
 	
 		this.dout = dout;
-		scn = new Scanner(System.in);
-		
-		start();
+		this.name = name;
+		din = new DataInputStream(System.in);
+		buff = new byte[1024];
+		new Thread(this).start();
 	
 	}
 	
 	public void run(){
-	
-		String mesg;
-		
+			
 		try{
+
 	
-			while(true)
-			{
-				
-				dout.writeBytes(scn.nextLine());
-				
-			}
+			while(true)dout.write(buff,0,din.read(buff));
 			
 		}
 		

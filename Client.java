@@ -17,7 +17,7 @@ public class Client{
 		try{
 
 			ClientReader ClReader = new ClientReader(new DataInputStream(skt.getInputStream()));
-			ClientWriter ClWriter = new ClientWriter(new DataOutputStream(skt.getOutputStream()));
+			ClientWriter ClWriter = new ClientWriter(new DataOutputStream(skt.getOutputStream()),name);
 		
 		}
 
