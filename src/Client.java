@@ -4,33 +4,33 @@ import java.io.DataOutputStream;
 import java.net.InetAddress;
 import java.io.IOException;
 
-public class Client{
-	
+public class Client {
+
 	Socket skt;
 	String name;
-	
-	public Client(Socket skt,String name){
-		
-		this.name = name; 
+
+	public Client(Socket skt, String name) {
+
+		this.name = name;
 		this.skt = skt;
-		
-		try{
+
+		try {
 
 			ClientReader ClReader = new ClientReader(new DataInputStream(skt.getInputStream()));
-			ClientWriter ClWriter = new ClientWriter(new DataOutputStream(skt.getOutputStream()),name);
-		
+			ClientWriter ClWriter = new ClientWriter(new DataOutputStream(skt.getOutputStream()), name);
+
 		}
 
-		catch(Exception ex){
+		catch (Exception ex) {
 
-			System.out.println("client initialization failed :: "+ex.getMessage());
+			System.out.println("client initialization failed :: " + ex.getMessage());
 		}
 
 	}
 
-	public static void main(String args[]){
+	public static void main(String args[]) {
 
-		try{
+		try {
 
 			InetAddress host = InetAddress.getByName(args[0]);
 
@@ -40,22 +40,21 @@ public class Client{
 
 			System.out.println("Connecting to server");
 
-			Socket skt = new Socket(host,portNo);
+			Socket skt = new Socket(host, portNo);
 
-			Client cl = new Client(skt,name);
+			Client cl = new Client(skt, name);
 		}
 
-		catch(ArrayIndexOutOfBoundsException ex){
+		catch (ArrayIndexOutOfBoundsException ex) {
 
 			System.out.println("Client < host > < port > < client-name >");
 		}
 
-		catch(Exception ex){
+		catch (Exception ex) {
 
 			System.out.println(ex.getMessage());
 
 		}
 	}
-
 
 }
