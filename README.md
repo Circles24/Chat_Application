@@ -34,6 +34,3 @@ Give executable permission
 #### Start a client
 
 `./Client.sh`
-
-
-### play and enjoy " THE LIFE "
