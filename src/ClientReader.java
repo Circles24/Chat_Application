@@ -1,5 +1,6 @@
 import java.io.DataInputStream;
 
+// ClientReader reads data from other clients DataOutputStream and writes it to users console
 public class ClientReader implements Runnable {
 
 	private DataInputStream din;
@@ -9,7 +10,6 @@ public class ClientReader implements Runnable {
 	ClientReader(DataInputStream din) {
 
 		this.din = din;
-		new Thread(this).start();
 		buff = new byte[1024];
 
 		new Thread(this).start();
@@ -22,13 +22,12 @@ public class ClientReader implements Runnable {
 
 			while (true)
 				System.out.write(buff, 0, din.read(buff));
-
 		}
 
 		catch (Exception ex) {
 
-			System.out.println(ex.getMessage());
-
+			System.out.println("Exception@ClientReader.run :: " + ex.getMessage());
+			ex.printStackTrace();
 		}
 
 	}

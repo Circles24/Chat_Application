@@ -29,7 +29,8 @@ public class ChatProcessor implements Runnable {
 
 		catch (Exception ex) {
 
-			System.out.println("@ChatProcessor :: " + ex.getMessage());
+			System.out.println("Exception@ChatProcessor.run :: " + ex.getMessage());
 		}
+
 	}
 }

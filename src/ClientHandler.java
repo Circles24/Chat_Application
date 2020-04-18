@@ -23,10 +23,11 @@ public class ClientHandler implements Runnable {
 	public void run() {
 
 		try {
+
 			System.out.println("running client handler at ");
 
 			DataOutputStream dout = new DataOutputStream(skt.getOutputStream());
-			dout.writeBytes("\n1     ::       Initiate\n2     ::       Join\nElse  ::    Disconnect\n");
+			dout.writeBytes("\n1     ::       Initiate Chat\n2     ::       Join Chat\nElse  ::    Disconnect Chat\n");
 
 			long token = 0;
 
@@ -45,12 +46,14 @@ public class ClientHandler implements Runnable {
 					break;
 
 				case 2: {
+
 					ChatBox cb = null;
 					dout.writeBytes("enter the Token\n");
 					while (cb == null) {
+
 						cb = map.get(scn.nextLong());
 						if (cb == null)
-							dout.writeBytes("Wrong Token please retry\n");
+							dout.writeBytes("Wrong Token retry\n");
 					}
 					dout.writeBytes("Token Accepted\n");
 					cb.add(skt);
@@ -60,7 +63,7 @@ public class ClientHandler implements Runnable {
 
 				default: {
 					skt.close();
-					throw new Exception("user entered wrong input\n");
+					throw new Exception("you choose to exit\n");
 				}
 
 			}
@@ -68,8 +71,7 @@ public class ClientHandler implements Runnable {
 
 		catch (Exception ex) {
 
-			System.out.println("@ClientHandler :: " + ex.getMessage());
+			System.out.println("Exception@ClientHandler.run :: " + ex.getMessage());
 		}
-
 	}
 }

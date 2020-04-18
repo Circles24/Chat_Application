@@ -40,6 +40,8 @@ public class ChatBox {
 
 		try {
 
+			// intializing the chat
+
 			new ChatProcessor(new DataInputStream(s1.getInputStream()), new DataOutputStream(s2.getOutputStream()));
 			new ChatProcessor(new DataInputStream(s2.getInputStream()), new DataOutputStream(s1.getOutputStream()));
 

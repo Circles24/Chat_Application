@@ -2,6 +2,7 @@ import java.io.DataOutputStream;
 import java.util.Scanner;
 import java.io.DataInputStream;
 
+// this class reads data from console and writes it to the dataInputStream of another client
 public class ClientWriter implements Runnable {
 	private DataOutputStream dout;
 	private DataInputStream din;
@@ -24,13 +25,12 @@ public class ClientWriter implements Runnable {
 
 			while (true)
 				dout.write(buff, 0, din.read(buff));
-
 		}
 
 		catch (Exception ex) {
 
-			System.out.println(ex.getMessage());
-
+			System.out.println("Exception@ClientWriter.run :: " + ex.getMessage());
+			ex.printStackTrace();
 		}
 
 	}

@@ -1,2 +1,2 @@
 # File contaning the server data
-port 1234
+ServerPort 1234
